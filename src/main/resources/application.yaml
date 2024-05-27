@@ -1,0 +1,12 @@
+logging.level.org.jooq.Constants: WARN
+spring.main.banner-mode: off
+flyway.enabled: false
+spring:
+  datasource.driver-class-name: org.postgresql.Driver
+app.datasource:
+  jdbc-url: 'jdbc:postgresql://localhost/shaba-games-user-db'
+  username: db
+  password: password
+
+spring.config.activate.on-profile: docker
+app.datasource.jdbc-url: 'jdbc:postgresql://db/shaba-games-user-db'

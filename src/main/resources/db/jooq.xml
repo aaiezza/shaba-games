@@ -1,0 +1,32 @@
+<configuration>
+    <jdbc>
+        <driver>org.postgresql.Driver</driver>
+        <url>jdbc:postgresql://localhost:5432/shaba-games-user-db</url>
+        <user>db</user>
+        <password>password</password>
+    </jdbc>
+    <generator>
+        <name>org.jooq.codegen.KotlinGenerator</name>
+        <database>
+            <name>org.jooq.meta.postgres.PostgresDatabase</name>
+            <includes>.*</includes>
+            <inputSchema>public</inputSchema>
+            <excludes>schema_migrations | next_id | flyway_schema_history</excludes>
+            <forcedTypes></forcedTypes>
+        </database>
+        <target>
+            <packageName>com.shaba.games.repository.jooq</packageName>
+        </target>
+        <generate>
+            <generatedAnnotation>true</generatedAnnotation>
+            <pojos>true</pojos>
+            <interfaces>true</interfaces>
+            <jpaAnnotations>false</jpaAnnotations>
+            <validationAnnotations>false</validationAnnotations>
+            <springAnnotations>true</springAnnotations>
+            <fluentSetters>true</fluentSetters>
+            <globalObjectReferences>true</globalObjectReferences>
+            <javaTimeTypes>true</javaTimeTypes>
+        </generate>
+    </generator>
+</configuration>
