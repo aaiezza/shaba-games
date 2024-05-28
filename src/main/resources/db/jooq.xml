@@ -1,9 +1,9 @@
 <configuration>
     <jdbc>
         <driver>org.postgresql.Driver</driver>
-        <url>jdbc:postgresql://localhost:5432/shaba-games-user-db</url>
+        <url>jdbc:postgresql://db/shaba-games-user-db</url>
         <user>db</user>
-        <password>password</password>
+        <password/>
     </jdbc>
     <generator>
         <name>org.jooq.codegen.KotlinGenerator</name>

@@ -6,7 +6,7 @@ spring:
 app.datasource:
   jdbc-url: 'jdbc:postgresql://localhost/shaba-games-user-db'
   username: db
-  password: password
+  password:
 
 spring.config.activate.on-profile: docker
 app.datasource.jdbc-url: 'jdbc:postgresql://db/shaba-games-user-db'
