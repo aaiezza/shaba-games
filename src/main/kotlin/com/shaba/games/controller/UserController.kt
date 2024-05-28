@@ -1,5 +1,6 @@
 package com.shaba.games.controller
 
+import com.shaba.games.IllegalUsernameEmailException
 import com.shaba.games.dto.UserRegistrationDto
 import com.shaba.games.service.UserService
 import jakarta.servlet.http.HttpServletRequest
@@ -24,8 +25,13 @@ class UserController(private val userService: UserService) {
     }
 
     @PostMapping("/signup")
-    fun signUp(@ModelAttribute("userRegistrationDto") userRegistrationDto: UserRegistrationDto): String {
-        userService.registerNewUser(userRegistrationDto)
+    fun signUp(@ModelAttribute("userRegistrationDto") userRegistrationDto: UserRegistrationDto, model: Model): String {
+        try {
+            userService.registerNewUser(userRegistrationDto)
+        } catch (e: IllegalUsernameEmailException) {
+            model.addAttribute("error", e.message)
+            return "signup"
+        }
         return "redirect:/login"
     }
 
