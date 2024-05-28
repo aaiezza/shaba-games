@@ -4,14 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/favicon.ico}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<style>
-    .navbar {
-        background-color: green;
-    }
-</style>
 
 <body>
 
@@ -27,8 +23,7 @@
                     class="icon-bar"></span> <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" th:href="@{/}">
-                Registration and
-                Login</a>
+                ShabaGames</a>
         </div>
     </div>
 </nav>
@@ -46,22 +41,57 @@
                     <div class="alert alert-danger" th:text="${error}"/>
                 </div>
 
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username" th:field="*{username}" required>
-                <br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" th:field="*{email}" required>
-                <br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" th:field="*{password}" required>
-                <br>
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" th:field="*{firstName}" required>
-                <br>
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" th:field="*{lastName}" required>
-                <br>
-                <button type="submit">Sign Up</button>
+                <table>
+                    <tbody>
+                        <div class="form-group">
+                            <tr>
+                                <td><label for="username">Username:</label></td>
+                                <td><input type="text" id="username" name="username" th:field="*{username}" required
+                                           class="form-control" autofocus="autofocus"></td>
+                            </tr>
+                        </div>
+                        <div class="form-group">
+                            <tr>
+                                <td><label for="email">Email:</label></td>
+                                <td><input type="email" id="email" name="email" th:field="*{email}" required
+                                           class="form-control"></td>
+                            </tr>
+                        </div>
+                        <div class="form-group">
+                            <tr>
+                                <td><label for="password">Password:</label></td>
+                                <td><input type="password" id="password" name="password" th:field="*{password}" required
+                                           class="form-control"></td>
+                            </tr>
+                        </div>
+                        <div class="form-group">
+                            <tr>
+                                <td><label for="firstName">First&nbsp;Name:</label></td>
+                                <td><input type="text" id="firstName" name="firstName" th:field="*{firstName}" required
+                                           class="form-control"></td>
+                            </tr>
+                        </div>
+                        <div class="form-group">
+                            <tr>
+                                <td><label for="lastName">Last&nbsp;Name:</label></td>
+                                <td><input type="text" id="lastName" name="lastName" th:field="*{lastName}" required
+                                           class="form-control"></td>
+                            </tr>
+                        </div>
+                    </tbody>
+                </table>
+
+                <br/>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="submit" name="signup-submit"
+                                   id="signup-submit"
+                                   class="form-control btn btn-primary"
+                                   value="Sign Up" />
+                        </div>
+                    </div>
+                </div>
             </form>
             <div class="form-group">
                     <span>Existing user? <a href="/" th:href="@{/login}">

@@ -1,0 +1,16 @@
+.navbar {
+    background-color: darkblue;
+}
+body {
+    background-color: lightslategray;
+}
+a {
+    color: darkblue;
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0.5em 0.15em;
+}
+td:nth-child(2) {
+    width: 25em;
+}

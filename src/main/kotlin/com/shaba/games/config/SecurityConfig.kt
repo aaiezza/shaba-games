@@ -18,7 +18,7 @@ class SecurityConfig(private val dataSource: DataSource) {
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
             .authorizeHttpRequests {
-                it.requestMatchers("/signup").permitAll()
+                it.requestMatchers("/signup", "/css/**", "/js/**", "/images/**").permitAll()
                     .anyRequest().authenticated()
             }
             .logout {
@@ -27,6 +27,7 @@ class SecurityConfig(private val dataSource: DataSource) {
             .formLogin {
                 it.loginPage("/login").permitAll()
             }
+            .csrf { it.disable() }
 
         return http.build();
     }
