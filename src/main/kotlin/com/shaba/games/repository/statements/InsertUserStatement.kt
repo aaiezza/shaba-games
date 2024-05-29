@@ -56,7 +56,7 @@ class InsertUserStatement(@Autowired private val dsl: DSLContext) {
 
             return newUser
         } catch (e: IntegrityConstraintViolationException) {
-            throw IllegalUsernameEmailException()
+            throw IllegalUsernameEmailException(e)
         }
     }
 }

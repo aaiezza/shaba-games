@@ -1,4 +1,3 @@
 package com.shaba.games
 
-class IllegalUsernameEmailException : RuntimeException("Cannot use that username or email") {
-}
+class IllegalUsernameEmailException(cause: Exception) : RuntimeException("Cannot use that username or email", cause)

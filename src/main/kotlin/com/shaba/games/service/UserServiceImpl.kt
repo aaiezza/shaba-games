@@ -1,6 +1,6 @@
 package com.shaba.games.service
 
-import com.shaba.games.service.UserService
+import com.shaba.games.controller.UpdatePasswordRequest
 import com.shaba.games.dto.UserRegistrationDto
 import com.shaba.games.model.Role
 import com.shaba.games.model.User
@@ -18,14 +18,15 @@ import java.util.stream.Collectors
 
 
 @Service
-class UserServiceImpl(private val userRepository: UserRepository) : UserService {
-    @Autowired
-    private val passwordEncoder: BCryptPasswordEncoder?= null
+class UserServiceImpl(
+    private val userRepository: UserRepository,
+    @Autowired private val passwordEncoder: BCryptPasswordEncoder
+) : UserService {
     override fun save(registrationDto: UserRegistrationDto): User? {
         val user = User(
             registrationDto.email,
             registrationDto.username,
-            passwordEncoder?.encode(registrationDto.password),
+            passwordEncoder.encode(registrationDto.password),
             registrationDto.firstName,
             registrationDto.lastName,
             listOf(Role("ROLE_USER"))
@@ -43,6 +44,12 @@ class UserServiceImpl(private val userRepository: UserRepository) : UserService 
         )
     }
 
+    @Throws(UsernameNotFoundException::class)
+    override fun loadUserByEmail(email: String): User {
+        return userRepository.findByEmail(email)
+            ?: throw UsernameNotFoundException("Invalid username or password.")
+    }
+
     private fun mapRolesToAuthorities(roles: Collection<Role>): Collection<GrantedAuthority?> {
         return roles.stream().map(Function<Role, SimpleGrantedAuthority?> { role: Role ->
             SimpleGrantedAuthority(
@@ -54,4 +61,22 @@ class UserServiceImpl(private val userRepository: UserRepository) : UserService 
     override val all: List<User?>?
         get() = userRepository.findAll()
 
+    override fun updateUser(user: User, userRegistrationDto: UserRegistrationDto): User {
+        return userRepository.updateUser(user, userRegistrationDto)
+    }
+
+    // TODO
+    override fun updatePassword(user: User, updatePasswordRequest: UpdatePasswordRequest): User {
+        val passwordChangeRequest = UpdatePasswordRequest(
+            passwordEncoder.encode(updatePasswordRequest.oldPassword),
+            passwordEncoder.encode(updatePasswordRequest.newPassword)
+        )
+        // TODO - check to make sure the old password matches the user's current password
+//        if (user.password != passwordChangeRequest.oldPassword) {
+//            throw IllegalAccessException("Incorrect password")
+//        }
+        userRepository.updatePassword(user, passwordChangeRequest)
+
+        return user
+    }
 }

@@ -2,11 +2,7 @@ package com.shaba.games.model
 
 //import javax.persistence.*
 
-//@Entity
-//@Table(name = "role")
 class Role {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
     var name: String? = null
 
