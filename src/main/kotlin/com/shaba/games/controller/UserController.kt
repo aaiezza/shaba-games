@@ -47,6 +47,11 @@ class UserController(private val userService: UserService) {
         }
         return "redirect:login?logout&continue"
     }
+
+    @GetMapping("/about")
+    fun aboutPage(): String {
+        return "about"
+    }
 }
 
 
